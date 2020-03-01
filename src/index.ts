@@ -1,0 +1,1 @@
+export * from './html-validate-webpack-plugin';
