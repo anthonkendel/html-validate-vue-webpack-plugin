@@ -18,8 +18,11 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^13.7.7",
+    "@types/webpack": "^4.41.7",
     "jest": "^25.1.0",
     "standard-version": "^7.1.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
   }
 }
