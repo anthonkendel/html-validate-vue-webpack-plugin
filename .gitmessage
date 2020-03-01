@@ -1,41 +1,43 @@
 
 
-<type>[optional scope]: <description>
-
-[optional body]
-
-[optional footer]
-
-DETAILS:
-
-<type> must be one of the following:
-
-feat: A new feature
-fix: A bug fix
-docs: Documentation only changes
-style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-refactor: A code change that neither fixes a bug nor adds a feature
-test: Adding missing or correcting existing tests
-chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
-
-EXAMPLES:
-
-feat: allow provided config object to extend other configs
-
-BREAKING CHANGE: `extends` key in config file is now used for extending other config files
-
----
-
-docs: correct spelling of CHANGELOG
-
----
-
-feat(lang): added polish language
-
----
-
-fix: minor typos in code
-
-see the issue for details on the typos fixed
-
-fixes issue #12
+#
+# <type>[optional scope]: <description>
+#
+# [optional body]
+# 
+# [optional footer]
+# 
+# DETAILS:
+# 
+# <type> must be one of the following:
+# 
+# feat: A new feature
+# fix: A bug fix
+# docs: Documentation only changes
+# style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+# refactor: A code change that neither fixes a bug nor adds a feature
+# test: Adding missing or correcting existing tests
+# chore: Changes to the build process or auxiliary tools and libraries such as documentation generation
+# 
+# EXAMPLES:
+# 
+# feat: allow provided config object to extend other configs
+# 
+# BREAKING CHANGE: `extends` key in config file is now used for extending other config files
+# 
+# ---
+# 
+# docs: correct spelling of CHANGELOG
+# 
+# ---
+# 
+# feat(lang): added polish language
+# 
+# ---
+# 
+# fix: minor typos in code
+# 
+# see the issue for details on the typos fixed
+# 
+# fixes issue #12
+#
