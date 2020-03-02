@@ -1,16 +1,16 @@
 import { Configuration } from "webpack";
-import htmlValidateVueWebpackLoader from './html-validate-vue-webpack-loader';
+import * as path from 'path';
 
-export const htmlValidateVueWebpackConfig: Configuration = {
+export const HtmlValidateVueWebpackConfig: Configuration = {
   module: {
     rules: [
       {
         test: /\.vue$/,
-        loader: htmlValidateVueWebpackLoader,
+        loaders: ['json-loader', path.resolve(__dirname, 'html-validate-vue-webpack-loader')],
       }
     ]
   }
 
 };
 
-export default htmlValidateVueWebpackConfig;
+export default HtmlValidateVueWebpackConfig;

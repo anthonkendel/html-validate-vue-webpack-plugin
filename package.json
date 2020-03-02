@@ -12,14 +12,22 @@
   "keywords": [
     "webpack-plugin",
     "htmlvalidate",
-    "javascript"
+    "javascript",
+    "typescript"
   ],
   "author": "Anthon <anthon.kendel@gmail.com>",
   "license": "MIT",
+  "peerDependencies": {
+    "json-loader": ">=0.5.7"
+  },
   "devDependencies": {
+    "@types/json-schema": "^7.0.4",
     "@types/node": "^13.7.7",
+    "@types/schema-utils": "^2.4.0",
     "@types/webpack": "^4.41.7",
     "jest": "^25.1.0",
+    "json-loader": "^0.5.7",
+    "schema-utils": "^2.6.4",
     "standard-version": "^7.1.0",
     "typescript": "^3.8.3",
     "webpack": "^4.41.6",

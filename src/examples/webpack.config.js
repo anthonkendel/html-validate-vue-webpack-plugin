@@ -1,16 +1,9 @@
 const path = require("path");
+const {
+  HtmlValidateVueWebpackPlugin
+} = require("../../lib/html-validate-vue-webpack-plugin");
 
 module.exports = {
   entry: path.resolve(__dirname, "EButton.vue"),
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: path.resolve(
-          __dirname,
-          "../../lib/html-validate-vue-webpack-loader.js"
-        )
-      }
-    ]
-  }
+  plugins: [new HtmlValidateVueWebpackPlugin()]
 };
