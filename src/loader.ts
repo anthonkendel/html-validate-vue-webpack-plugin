@@ -1,10 +1,10 @@
-import { loader } from "webpack";
+import { loader } from 'webpack';
 
-const toKebabCase = (value: string) => {
+const toKebabCase = (value: string): string => {
   return value.replace(/([A-Z])([A-Z])/g, '$1-$2')
     .replace(/([a-z])([A-Z])/g, '$1-$2')
     .replace(/[\s_]+/g, '-')
-    .toLowerCase()
+    .toLowerCase();
 };
 
 const getFileName = (filePath: string): string => {
@@ -12,14 +12,14 @@ const getFileName = (filePath: string): string => {
   const lastIndexOfDot = filePath.lastIndexOf('.');
   const fileName = filePath.slice(lastIndexOfSlash + 1, lastIndexOfDot);
   return fileName;
-}
+};
 
-export function loader(this: loader.LoaderContext, source: string) {
+export function HtmlValidateVueWebpackLoader(this: loader.LoaderContext, source: string): string {
   const startTag = '<htmlvalidate>';
   const endTag = '</htmlvalidate>';
 
   const htmlValidateBlockRegexp = new RegExp(`${startTag}([\\n\\t\\r]|.)+${endTag}`);
-  const vueComponentNameRegExp = new RegExp(`name:\\s*["']?(\\w+)["']?`);
+  const vueComponentNameRegExp = new RegExp('name:\\s*["\']?(\\w+)["\']?');
 
   const htmlValidateBlock = htmlValidateBlockRegexp.exec(source);
   const componentNameProperty = vueComponentNameRegExp.exec(source);
@@ -50,4 +50,4 @@ export function loader(this: loader.LoaderContext, source: string) {
   }
 }
 
-export default loader;
+export default HtmlValidateVueWebpackLoader;
