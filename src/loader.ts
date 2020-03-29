@@ -1,3 +1,4 @@
+import { loader } from "webpack";
 
 const toKebabCase = (value: string) => {
   return value.replace(/([A-Z])([A-Z])/g, '$1-$2')
@@ -6,7 +7,14 @@ const toKebabCase = (value: string) => {
     .toLowerCase()
 };
 
-export function HtmlValidateVueWebpackLoader(this: any, source: string) {
+const getFileName = (filePath: string): string => {
+  const lastIndexOfSlash = filePath.lastIndexOf('/');
+  const lastIndexOfDot = filePath.lastIndexOf('.');
+  const fileName = filePath.slice(lastIndexOfSlash + 1, lastIndexOfDot);
+  return fileName;
+}
+
+export function loader(this: loader.LoaderContext, source: string) {
   const startTag = '<htmlvalidate>';
   const endTag = '</htmlvalidate>';
 
@@ -20,22 +28,20 @@ export function HtmlValidateVueWebpackLoader(this: any, source: string) {
     const [htmlValidateBlockFound = '{}'] = htmlValidateBlock ?? [];
     const htmlValidateBlockContent = htmlValidateBlockFound.replace(startTag, '').replace(endTag, '');
 
-    const fullFilePath = this.resource as string;
-    const lastIndexOfSlash = fullFilePath.lastIndexOf('/');
-    const lastIndexOfDot = fullFilePath.lastIndexOf('.');
-    const nameFromFilePath = fullFilePath.slice(lastIndexOfSlash + 1, lastIndexOfDot);
+    const nameFromResource = getFileName(this.resource);
 
-    const [, namePropertyFound = ''] = componentNameProperty ?? [];
+    const [, nameFromComponent = ''] = componentNameProperty ?? [];
 
     // ? Parse and stringify htmlvalidate block so we know it is a valid JSON.
     const htmlValidateBlockParsed = JSON.parse(htmlValidateBlockContent);
-    JSON.stringify(htmlValidateBlockParsed, null, 2);
 
-    const componentName = toKebabCase(namePropertyFound || nameFromFilePath || 'NameNotFound');
-    const result = { [componentName]: htmlValidateBlockParsed };
+    const componentName = toKebabCase(nameFromComponent || nameFromResource || 'NameNotFound');
+    const result = {
+      [componentName]: htmlValidateBlockParsed
+    };
     const resultJson = JSON.stringify(result, null, 2);
 
-    this.emitFile(`${componentName}.json`, resultJson);
+    this.emitFile(`${componentName}.json`, resultJson, undefined);
 
     return resultJson;
   } catch (error) {
@@ -44,4 +50,4 @@ export function HtmlValidateVueWebpackLoader(this: any, source: string) {
   }
 }
 
-export default HtmlValidateVueWebpackLoader;
+export default loader;

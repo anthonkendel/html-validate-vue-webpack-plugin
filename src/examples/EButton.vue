@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "EButton",
+  name: 'EButton',
   props: {
     type: {
       type: String,
@@ -19,10 +19,9 @@ export default {
 };
 </script>
 
-<!-- htmlvalidate tag should always written as JSON -->
+<!-- htmlvalidate tag should always be written in JSON -->
 <htmlvalidate>
 {
-  "flow": true,
-  "interactive": true
+  "inherit": "button"
 }
 </htmlvalidate>

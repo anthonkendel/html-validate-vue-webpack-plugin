@@ -1,7 +1,7 @@
-import { Configuration } from "webpack";
 import * as path from 'path';
+import { Configuration } from "webpack";
 
-export const HtmlValidateVueWebpackConfig: Configuration = {
+export const webpackConfig: Configuration = {
   module: {
     rules: [
       {
@@ -13,4 +13,4 @@ export const HtmlValidateVueWebpackConfig: Configuration = {
 
 };
 
-export default HtmlValidateVueWebpackConfig;
+export default webpackConfig;

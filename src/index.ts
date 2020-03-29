@@ -1,3 +1,3 @@
-export * from './html-validate-vue-webpack-config';
-export * from './html-validate-vue-webpack-loader';
-export * from './html-validate-vue-webpack-plugin';
+export * from './webpack-config';
+export * from './loader';
+export * from './plugin';
