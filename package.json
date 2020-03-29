@@ -10,8 +10,12 @@
     "release": "standard-version"
   },
   "keywords": [
+    "webpack",
+    "webpack-config",
+    "webpack-loader",
     "webpack-plugin",
     "htmlvalidate",
+    "html-validate",
     "javascript",
     "typescript"
   ],
