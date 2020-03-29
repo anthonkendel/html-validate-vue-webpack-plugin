@@ -9,14 +9,15 @@
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run lint",
     "build": "tsc",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepublishOnly": "rm -rf lib && npm run build"
   },
+  "files": ["lib/**/*"],
   "keywords": [
     "webpack",
     "webpack-config",
     "webpack-loader",
     "webpack-plugin",
-    "htmlvalidate",
     "html-validate",
     "javascript",
     "typescript"
