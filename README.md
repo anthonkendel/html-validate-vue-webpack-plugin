@@ -2,6 +2,8 @@
 
 > extract html-validate rules from Vue single file components
 
+![html-validate-vue-webpack-plugin](https://github.com/anthonkendel/html-validate-vue-webpack-plugin/workflows/html-validate-vue-webpack-plugin/badge.svg)
+
 ## Setup
 
 Install the package and its peer dependencies:
