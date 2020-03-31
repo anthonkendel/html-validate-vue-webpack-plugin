@@ -5,15 +5,21 @@
   "main": "lib/index.js",
   "scripts": {
     "prepare": "git config commit.template ./.gitmessage",
-    "lint": "eslint --ext .js,.ts src",
-    "lint:fix": "npm run lint -- --fix",
+    "eslint": "eslint --ext js,ts .",
+    "eslint:fix": "eslint --ext js,ts . --fix",
+    "prettier:check": "prettier . --check",
+    "prettier:write": "prettier . --write",
+    "lint": "npm run eslint && npm run prettier:check",
+    "lint:fix": "npm run eslint:fix && npm run prettier:write",
     "test": "npm run lint",
+    "clean": "rm -rf lib",
     "build": "tsc",
-    "release": "standard-version",
-    "prepublishOnly": "rm -rf lib && npm run build"
+    "prepublishOnly": "npm run build && npm run build",
+    "commitlint": "commitlint",
+    "semantic-release": "semantic-release"
   },
   "files": [
-    "lib/**/*"
+    "lib"
   ],
   "keywords": [
     "webpack",
@@ -31,15 +37,23 @@
     "webpack": ">=4"
   },
   "devDependencies": {
+    "@html-validate/commitlint-config": "^1.0.3",
+    "@html-validate/eslint-config": "^1.2.1",
+    "@html-validate/prettier-config": "^1.0.1",
     "@types/json-schema": "^7.0.4",
     "@types/node": "^13.7.7",
     "@types/schema-utils": "^2.4.0",
     "@types/webpack": "^4.41.7",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "commitlint": "^8.3.5",
     "eslint": "^6.8.0",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
     "json-loader": "^0.5.7",
+    "lint-staged": "^10.1.1",
+    "prettier": "^2.0.2",
+    "semantic-release": "^17.0.4",
     "standard-version": "^7.1.0",
     "typescript": "^3.8.3",
     "webpack": "^4.41.6",
@@ -48,5 +62,20 @@
   "dependencies": {
     "json-schema": "^0.2.5",
     "schema-utils": "^2.6.5"
-  }
+  },
+  "commitlint": {
+    "extends": [
+      "@html-validate"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": "npm run lint:fix"
+  },
+  "prettier": "@html-validate/prettier-config"
 }

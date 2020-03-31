@@ -13,10 +13,12 @@ npm install --save-dev html-validate-vue-webpack-plugin json-loader webpack
 Import the plugin and add it to your Webpack plugins:
 
 ```js
-const { HtmlValidateVueWebpackPlugin } = require("html-validate-vue-webpack-plugin");
+const {
+  HtmlValidateVueWebpackPlugin,
+} = require("html-validate-vue-webpack-plugin");
 
 module.exports = {
-  plugins: [new HtmlValidateVueWebpackPlugin()]
+  plugins: [new HtmlValidateVueWebpackPlugin()],
 };
 ```
 

@@ -1,21 +1,23 @@
-import { JSONSchema7 } from 'json-schema';
-import validate from 'schema-utils';
-import { Compiler } from 'webpack';
-import webpackConfig from './webpack-config';
+import { JSONSchema7 } from "json-schema";
+import validate from "schema-utils";
+import { Compiler } from "webpack";
+import webpackConfig from "./webpack-config";
 
 const schema: JSONSchema7 = {
-  type: 'object',
-  properties: {}
+	type: "object",
+	properties: {},
 };
 
 export class HtmlValidateVueWebpackPlugin {
-  constructor(options = {}) {
-    validate(schema, options, { name: 'HtmlValidateVueWebpackPlugin' });
-  }
+	public constructor(options = {}) {
+		validate(schema, options, { name: "HtmlValidateVueWebpackPlugin" });
+	}
 
-  apply(compiler: Compiler): void {
-    compiler.options.module?.rules?.push(...webpackConfig.module?.rules ?? []);
-  }
+	public apply(compiler: Compiler): void {
+		compiler.options.module?.rules?.push(
+			...(webpackConfig.module?.rules ?? [])
+		);
+	}
 }
 
 export default HtmlValidateVueWebpackPlugin;

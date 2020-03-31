@@ -5,7 +5,8 @@
   },
   "extends": [
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "@html-validate/eslint-config/typescript"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -17,10 +18,5 @@
     "ecmaVersion": 2018
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {
-    "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"]
-  }
+  "rules": {}
 }
