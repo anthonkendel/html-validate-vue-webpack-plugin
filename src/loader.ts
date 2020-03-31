@@ -1,6 +1,6 @@
 import { loader } from "webpack";
 
-const toKebabCase = (value: string): string => {
+export const toKebabCase = (value: string): string => {
 	return value
 		.replace(/([A-Z])([A-Z])/g, "$1-$2")
 		.replace(/([a-z])([A-Z])/g, "$1-$2")
@@ -8,10 +8,13 @@ const toKebabCase = (value: string): string => {
 		.toLowerCase();
 };
 
-const getFileName = (filePath: string): string => {
+export const getFileName = (filePath: string): string => {
 	const lastIndexOfSlash = filePath.lastIndexOf("/");
 	const lastIndexOfDot = filePath.lastIndexOf(".");
-	const fileName = filePath.slice(lastIndexOfSlash + 1, lastIndexOfDot);
+	const fileName = filePath.slice(
+		lastIndexOfSlash + 1,
+		lastIndexOfDot === -1 ? undefined : lastIndexOfDot
+	);
 	return fileName;
 };
 

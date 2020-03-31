@@ -11,7 +11,8 @@
     "prettier:write": "prettier . --write",
     "lint": "npm run eslint && npm run prettier:check",
     "lint:fix": "npm run eslint:fix && npm run prettier:write",
-    "test": "npm run lint",
+    "unit": "jest",
+    "test": "npm run lint && npm run unit -- --coverage",
     "clean": "rm -rf lib",
     "build": "tsc",
     "prepublishOnly": "npm run build && npm run build",
@@ -40,6 +41,7 @@
     "@html-validate/commitlint-config": "^1.0.3",
     "@html-validate/eslint-config": "^1.2.1",
     "@html-validate/prettier-config": "^1.0.1",
+    "@types/jest": "^25.1.4",
     "@types/json-schema": "^7.0.4",
     "@types/node": "^13.7.7",
     "@types/schema-utils": "^2.4.0",
@@ -55,6 +57,7 @@
     "prettier": "^2.0.2",
     "semantic-release": "^17.0.4",
     "standard-version": "^7.1.0",
+    "ts-jest": "^25.3.0",
     "typescript": "^3.8.3",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
@@ -77,5 +80,9 @@
   "lint-staged": {
     "*.{ts,js,json,md}": "npm run lint:fix"
   },
-  "prettier": "@html-validate/prettier-config"
+  "prettier": "@html-validate/prettier-config",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
 }
