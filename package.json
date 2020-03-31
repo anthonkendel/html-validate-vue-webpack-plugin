@@ -17,7 +17,7 @@
     "build": "tsc",
     "prepublishOnly": "npm run build && npm run build",
     "commitlint": "commitlint",
-    "semantic-release": "semantic-release"
+    "release": "standard-version"
   },
   "files": [
     "lib"
@@ -55,7 +55,6 @@
     "json-loader": "^0.5.7",
     "lint-staged": "^10.1.1",
     "prettier": "^2.0.2",
-    "semantic-release": "^17.0.4",
     "standard-version": "^7.1.0",
     "ts-jest": "^25.3.0",
     "typescript": "^3.8.3",
