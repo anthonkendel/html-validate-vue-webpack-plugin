@@ -15,7 +15,7 @@
     "test": "npm run lint && npm run unit -- --verbose --coverage",
     "clean": "rm -rf lib",
     "build": "tsc",
-    "prepublishOnly": "npm run build && npm run build",
+    "prepublishOnly": "npm run build",
     "commitlint": "commitlint",
     "release": "standard-version"
   },
