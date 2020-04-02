@@ -2,9 +2,11 @@ import { loader } from "webpack";
 import {
 	getComponentName,
 	getFileName,
-	getHtmlValidateRules,
+	getHtmlValidateContent as getHtmlValidateBlockContent,
 	toKebabCase,
 	prettify,
+	getHtmlValidateSlotRules,
+	getHtmlValidateRootRules,
 } from "./loader-utils";
 
 export function HtmlValidateVueWebpackLoader(
@@ -14,19 +16,23 @@ export function HtmlValidateVueWebpackLoader(
 	try {
 		const nameFromComponent = getComponentName(source);
 		const nameFromResource = getFileName(this.resource);
-		const htmlValidateRules = getHtmlValidateRules(source);
-
-		// ? Parse and stringify htmlvalidate block so we know it is a valid JSON.
-		const htmlValidateRulesParsed = JSON.parse(htmlValidateRules);
-
 		const componentName = toKebabCase(nameFromComponent || nameFromResource);
-		const finalHtmlValidateRules = prettify({
-			[componentName]: htmlValidateRulesParsed,
+
+		const blockContent = getHtmlValidateBlockContent(source);
+		// ? Parse and stringify htmlvalidate content so we know it is a valid JSON.
+		JSON.parse(blockContent);
+
+		const rootRules = getHtmlValidateRootRules(blockContent, componentName);
+		const slotRules = getHtmlValidateSlotRules(blockContent, componentName);
+
+		const rules = prettify({
+			...rootRules,
+			...slotRules,
 		});
 
-		this.emitFile(`${componentName}.json`, finalHtmlValidateRules, undefined);
+		this.emitFile(`${componentName}.json`, rules, undefined);
 
-		return finalHtmlValidateRules;
+		return rules;
 	} catch (error) {
 		console.error(
 			"HtmlValidateVueWebpackLoader received the following error:",

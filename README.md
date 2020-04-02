@@ -34,6 +34,8 @@ The webpack loader handles the processing `.vue` files. For each file it will lo
 
 The webpack plugin combines the webpack config and webpack plugin and applies the rules and processing to the webpack config.
 
+## [Examples](./src/examples/README)
+
 ## LICENSE
 
 MIT

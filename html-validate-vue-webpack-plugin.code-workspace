@@ -4,5 +4,15 @@
       "name": "html-validate-vue-webpack-plugin",
       "path": "."
     }
-  ]
+  ],
+  "extensions": {
+    "recommendations": [
+      "octref.vetur"
+    ]
+  },
+  "settings": {
+    "vetur.grammar.customBlocks": {
+      "htmlvalidate": "json"
+    }
+  }
 }

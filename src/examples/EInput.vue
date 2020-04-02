@@ -1,15 +1,12 @@
 <template>
 	<div>
-		<button :type="type">
-			<!-- @slot button content, i.e. click me! -->
-			<slot />
-		</button>
+		<input :type="type" />
 	</div>
 </template>
 
 <script>
 export default {
-	name: "EButton",
+	name: "EInput",
 	props: {
 		type: {
 			type: String,
@@ -22,9 +19,6 @@ export default {
 <!-- htmlvalidate tag should always be written in JSON -->
 <htmlvalidate>
 {
-  "inherit": "button",
-  "#default": {
-    "permittedContent": ["@phrasing"]
-  }
+  "inherit": "input"
 }
 </htmlvalidate>
