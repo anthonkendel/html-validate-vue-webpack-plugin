@@ -1,62 +1,32 @@
 import { loader } from "webpack";
-
-export const toKebabCase = (value: string): string => {
-	return value
-		.replace(/([A-Z])([A-Z])/g, "$1-$2")
-		.replace(/([a-z])([A-Z])/g, "$1-$2")
-		.replace(/[\s_]+/g, "-")
-		.toLowerCase();
-};
-
-export const getFileName = (filePath: string): string => {
-	const lastIndexOfSlash = filePath.lastIndexOf("/");
-	const lastIndexOfDot = filePath.lastIndexOf(".");
-	const fileName = filePath.slice(
-		lastIndexOfSlash + 1,
-		lastIndexOfDot === -1 ? undefined : lastIndexOfDot
-	);
-	return fileName;
-};
+import {
+	getComponentName,
+	getFileName,
+	getHtmlValidateRules,
+	toKebabCase,
+	prettify,
+} from "./loader-utils";
 
 export function HtmlValidateVueWebpackLoader(
 	this: loader.LoaderContext,
 	source: string
 ): string {
-	const startTag = "<htmlvalidate>";
-	const endTag = "</htmlvalidate>";
-
-	const htmlValidateBlockRegexp = new RegExp(
-		`${startTag}([\\n\\t\\r]|.)+${endTag}`
-	);
-	const vueComponentNameRegExp = new RegExp("name:\\s*[\"']?(\\w+)[\"']?");
-
-	const htmlValidateBlock = htmlValidateBlockRegexp.exec(source);
-	const componentNameProperty = vueComponentNameRegExp.exec(source);
-
 	try {
-		const [htmlValidateBlockFound = "{}"] = htmlValidateBlock ?? [];
-		const htmlValidateBlockContent = htmlValidateBlockFound
-			.replace(startTag, "")
-			.replace(endTag, "");
-
+		const nameFromComponent = getComponentName(source);
 		const nameFromResource = getFileName(this.resource);
-
-		const [, nameFromComponent = ""] = componentNameProperty ?? [];
+		const htmlValidateRules = getHtmlValidateRules(source);
 
 		// ? Parse and stringify htmlvalidate block so we know it is a valid JSON.
-		const htmlValidateBlockParsed = JSON.parse(htmlValidateBlockContent);
+		const htmlValidateRulesParsed = JSON.parse(htmlValidateRules);
 
-		const componentName = toKebabCase(
-			nameFromComponent || nameFromResource || "NameNotFound"
-		);
-		const result = {
-			[componentName]: htmlValidateBlockParsed,
-		};
-		const resultJson = JSON.stringify(result, null, 2);
+		const componentName = toKebabCase(nameFromComponent || nameFromResource);
+		const finalHtmlValidateRules = prettify({
+			[componentName]: htmlValidateRulesParsed,
+		});
 
-		this.emitFile(`${componentName}.json`, resultJson, undefined);
+		this.emitFile(`${componentName}.json`, finalHtmlValidateRules, undefined);
 
-		return resultJson;
+		return finalHtmlValidateRules;
 	} catch (error) {
 		console.error(
 			"HtmlValidateVueWebpackLoader received the following error:",
