@@ -1,6 +1,6 @@
 {
   "name": "html-validate-vue-webpack-plugin",
-  "version": "0.4.7",
+  "version": "0.5.0",
   "description": "extract html-validate rules from Vue single file components",
   "main": "lib/index.js",
   "scripts": {
