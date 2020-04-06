@@ -4,6 +4,8 @@
 
 ![html-validate-vue-webpack-plugin](https://github.com/anthonkendel/html-validate-vue-webpack-plugin/workflows/html-validate-vue-webpack-plugin/badge.svg)
 
+**This project is moved to [GitLab](https://gitlab.com/html-validate/html-validate-vue-webpack-plugin) so that it is available together with the official html-validate.**
+
 ## Setup
 
 Install the package and its peer dependencies:
